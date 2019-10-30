@@ -1,0 +1,42 @@
+{
+  "name": "react-native-lazy-index",
+  "version": "1.0.1",
+  "description": "RAM bundle friendly index.js with on-demand loaded modules",
+  "keywords": [
+    "babel",
+    "bundle",
+    "codegen",
+    "index.js",
+    "inline",
+    "lazy",
+    "macro",
+    "on-demand",
+    "performance",
+    "ram",
+    "react",
+    "react-native",
+    "require"
+  ],
+  "homepage": "https://github.com/microsoft/react-native-lazy-index#readme",
+  "bugs": "https://github.com/microsoft/react-native-lazy-index/issues",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microsoft/react-native-lazy-index.git"
+  },
+  "scripts": {
+    "format": "prettier --write *.js*"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-0",
+    "babel-plugin-codegen": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.59"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "prettier": "^1.18.0"
+  }
+}
