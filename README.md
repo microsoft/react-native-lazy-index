@@ -3,8 +3,8 @@
 [![npm version](https://badge.fury.io/js/react-native-lazy-index.svg)](https://badge.fury.io/js/react-native-lazy-index)
 
 `react-native-lazy-index` is a RAM bundle friendly, bundle-time generated
-`index.js`. It allows you to initialize React Native quickly, and only load
-features you'll use on demand.
+`index.js`. Improve your app startup time by only loading features you'll use on
+demand.
 
 For information on RAM bundles and inline requires, see
 [React Native Performance](https://facebook.github.io/react-native/docs/performance#ram-bundles-inline-requires).
