@@ -83,8 +83,8 @@ ReactContext reactContext = reactInstanceManager.getCurrentReactContext();
 CatalystInstance catalystInstance = reactContext.getCatalystInstance();
 
 WritableNativeArray features = new WritableNativeArray();
-features.push("Another");
-features.push("YetAnother");
+features.pushString("Another");
+features.pushString("YetAnother");
 
 catalystInstance.callFunction("ReactExperienceLoader", "load", features);
 ```
