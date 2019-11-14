@@ -4,7 +4,7 @@ const fs = require("fs");
 const { experiences } = JSON.parse(
   fs.readFileSync(
     require.resolve("./package.json", {
-      paths: module.parent && module.parent.paths
+      paths: [".", ...(module.parent ? module.parent.paths : [])]
     }),
     "utf8"
   )
