@@ -10,6 +10,10 @@ const { experiences } = JSON.parse(
   )
 );
 
+if (!experiences) {
+  throw new Error("Missing `experiences` section in `package.json`");
+}
+
 module.exports = `name => {
   switch (name) {
     ${Object.keys(experiences)
