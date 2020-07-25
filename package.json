@@ -28,7 +28,7 @@
   "scripts": {
     "ci:test": "yarn format && yarn codegen && git diff && test $(git diff | grep -c '$') -eq 0",
     "codegen": "babel --plugins codegen index.js > index.js.out",
-    "format": "prettier --write *.js *.json"
+    "format": "prettier --write $(git ls-files '*.js' '*.json')"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "prettier": "^1.18.0"
+    "prettier": "2.0.5"
   },
   "experiences": {
     "FeatureA": "@contoso/feature-a",
