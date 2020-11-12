@@ -1,6 +1,6 @@
 {
   "name": "react-native-lazy-index",
-  "version": "1.0.2",
+  "version": "1.0.0-dev",
   "description": "RAM bundle friendly index.js with on-demand loaded modules",
   "keywords": [
     "babel",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
-    "babel-plugin-codegen": "^3.0.0"
+    "babel-plugin-codegen": "^4.0.0"
   },
   "peerDependencies": {
     "react-native": ">=0.59"
