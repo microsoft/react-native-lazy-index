@@ -161,7 +161,7 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.12.5.tgz#b4af32ddd473c0bfa643bd7ff0728b8e71b81ea0"
   integrity sha512-FVM6RZQ0mn2KCf1VUED7KepYeUWoVShczewOCfm3nzoBybaih51h+sYVVGthW9M6lPByEPTQf+xm27PBdlpwmQ==
 
-"@babel/runtime@^7.7.2":
+"@babel/runtime@^7.7.2", "@babel/runtime@^7.9.2":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -695,16 +695,16 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-babel-plugin-codegen@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-codegen/-/babel-plugin-codegen-3.1.0.tgz#a5eeccd269f868d9173a32b9b3ceb052f307a826"
-  integrity sha512-etFLWBRmsCY6aT44GW6SXAv7NfjXAbNB6XNbH+ZiX5B00yYL4TSPZlETaZ5dZ5kYO2wpSc72z9HeK99BX7uERw==
+babel-plugin-codegen@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-codegen/-/babel-plugin-codegen-4.0.1.tgz#bf234c5fb31d8477bc1484f00d920bae163fa268"
+  integrity sha512-cehTkKAGgENw+ftEngX/zVfFqMxFFItsatwmLHfxVLJCnkJvREQhsCb5/WNrNdP7L3tbwGgd5JQt9dFth+p24g==
   dependencies:
-    "@babel/runtime" "^7.7.2"
-    babel-plugin-macros "^2.6.2"
+    "@babel/runtime" "^7.9.2"
+    babel-plugin-macros "^2.8.0"
     require-from-string "^2.0.2"
 
-babel-plugin-macros@^2.6.2:
+babel-plugin-macros@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-2.8.0.tgz#0f958a7cc6556b1e65344465d99111a1e5e10138"
   integrity sha512-SEP5kJpfGYqYKpBrj5XU3ahw5p5GOHJ0U5ssOSQ/WBVdwkD2Dzlce95exQTs3jOVWPPKLBN2rlEWkCK7dSmLvg==
