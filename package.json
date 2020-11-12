@@ -26,9 +26,10 @@
     "url": "git+https://github.com/microsoft/react-native-lazy-index.git"
   },
   "scripts": {
-    "ci:test": "yarn format && yarn codegen && git diff && test $(git diff | grep -c '$') -eq 0",
+    "ci": "yarn --frozen-lockfile --non-interactive",
     "codegen": "babel --plugins codegen index.js > index.js.out",
-    "format": "prettier --write $(git ls-files '*.js' '*.json')"
+    "format": "prettier --write $(git ls-files '*.js' '*.json')",
+    "test": "yarn format && yarn codegen && git diff && test $(git diff | grep -c '$') -eq 0"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
@@ -39,12 +40,16 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "prettier": "2.0.5"
+    "prettier": "^2.0.0",
+    "semantic-release": "^17.0.0"
   },
   "experiences": {
     "FeatureA": "@contoso/feature-a",
     "FeatureB": "@contoso/feature-b",
     "FeatureC": "@contoso/feature-c",
     "FeatureD": "@contoso/feature-d"
+  },
+  "release": {
+    "tagFormat": "${version}"
   }
 }
