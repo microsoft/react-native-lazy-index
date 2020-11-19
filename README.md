@@ -7,7 +7,7 @@
 demand.
 
 For information on RAM bundles and inline requires, see
-[React Native Performance](https://facebook.github.io/react-native/docs/performance#ram-bundles-inline-requires).
+[React Native Performance](https://reactnative.dev/docs/ram-bundles-inline-requires).
 
 If you use [Haul](https://github.com/callstack/haul), also take a look at their
 [documentation](https://github.com/callstack/haul/blob/2c68e97766f9f6c2632c46e40631bd7aaacdc75b/docs/CLI%20Commands.md#haul-ram-bundle).
