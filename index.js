@@ -1,4 +1,2 @@
-const BatchedBridge = require("react-native/Libraries/BatchedBridge/BatchedBridge");
-BatchedBridge.registerCallableModule("ReactExperienceLoader", {
-  load: (...names) => names.forEach(codegen.require("inlineRequireModules")),
-});
+// @ts-nocheck
+codegen.require("./generateLazyIndex"); // eslint-disable-line no-undef
