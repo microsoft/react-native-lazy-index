@@ -32,62 +32,32 @@ it to your `.babelrc`:
 ```
 
 In your `package.json`, add a section called `"experiences"` with the features
-that should be lazy loaded. In the example below, we have four features keyed on
-unique names:
+that should be lazy loaded. In the example below, we've listed four packages:
 
 ```json
 {
-  "name": "MyAwesomeApp",
+  "name": "my-awesome-app",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "@MyAwesomeApp/SomeFeature": "*",
-    "@MyAwesomeApp/AnotherFeature": "*",
-    "@MyAwesomeApp/YetAnotherFeature": "*",
-    "@MyAwesomeApp/FinalFeature": "*",
-    "react": "16.9.0",
-    "react-native": "0.61.4",
-    "react-native-lazy-index": "^1.0.0"
+    "@awesome-app/some-feature": "*",
+    "@awesome-app/another-feature": "*",
+    "@awesome-app/yet-another-feature": "*",
+    "@awesome-app/final-feature": "*",
+    "react": "16.13.1",
+    "react-native": "0.63.4",
+    "react-native-lazy-index": "^2.0.0"
   },
-  "experiences": {
-    "Some": "@MyAwesomeApp/SomeFeature",
-    "Another": "@MyAwesomeApp/AnotherFeature",
-    "YetAnother": "@MyAwesomeApp/YetAnotherFeature",
-    "Final": "@MyAwesomeApp/FinalFeature"
-  }
+  "experiences": [
+    "@awesome-app/some-feature",
+    "@awesome-app/another-feature",
+    "@awesome-app/yet-another-feature",
+    "@awesome-app/final-feature"
+  ]
 }
 ```
 
-Import `react-native-lazy-index` in your `index.js`:
-
-```js
-import "react-native-lazy-index";
-```
-
-On the native side, you can now load your experiences by invoking
-`ReactExperienceLoader.load()`. As an example, we will load two features,
-`AnotherFeature` and `YetAnotherFeature`:
-
-```objc
-// iOS
-[bridge enqueueJSCall:@"ReactExperienceLoader"
-               method:@"load"
-                 args:@[@"Another", @"YetAnother"]
-           completion:nil];
-```
-
-```java
-// Android
-ReactInstanceManager reactInstanceManager = reactNativeHost.getReactInstanceManager();
-ReactContext reactContext = reactInstanceManager.getCurrentReactContext();
-CatalystInstance catalystInstance = reactContext.getCatalystInstance();
-
-WritableNativeArray features = new WritableNativeArray();
-features.pushString("Another");
-features.pushString("YetAnother");
-
-catalystInstance.callFunction("ReactExperienceLoader", "load", features);
-```
+That's it!
 
 ## Why
 
@@ -95,37 +65,102 @@ With a naive `index.js`, all features will be loaded when your app starts and
 React Native is initialized for the first time.
 
 ```js
-import "@MyAwesomeApp/SomeFeature";
-import "@MyAwesomeApp/AnotherFeature";
-import "@MyAwesomeApp/YetAnotherFeature";
-import "@MyAwesomeApp/FinalFeature";
+import "@awesome-app/some-feature";
+import "@awesome-app/another-feature";
+import "@awesome-app/yet-another-feature";
+import "@awesome-app/final-feature";
 ```
 
 By loading features on demand, we can improve app startup time.
 
 With `react-native-lazy-index`, we no longer load all features up front.
-Instead, `index.js` registers a callable module, `ReactExperienceLoader`,
-allowing full control over when a feature is loaded. Features that are never
-used, should never be loaded.
+Instead, `index.js` wraps calls to `AppRegistry.registerComponent` and
+`BatchedBridge.registerCallableModule`, deferring the import of a feature until
+it is used. Features that are never used, are never loaded.
+
+When you import `react-native-lazy-index`, something similar to below is
+generated:
 
 ```js
-const BatchedBridge = require("react-native/Libraries/BatchedBridge/BatchedBridge");
-BatchedBridge.registerCallableModule("ReactExperienceLoader", {
-  load: (...names) =>
-    names.forEach(name => {
-      switch (name) {
-        case "SomeFeature":
-          return require("@MyAwesomeApp/SomeFeature");
-        case "AnotherFeature":
-          return require("@MyAwesomeApp/AnotherFeature");
-        case "YetAnotherFeature":
-          return require("@MyAwesomeApp/YetAnotherFeature");
-        case "FinalFeature":
-          return require("@MyAwesomeApp/FinalFeature");
-      }
-    })
+const { AppRegistry } = require("react-native");
+
+AppRegistry.registerComponent("SomeFeature", () => {
+  // We'll import the module the first time "SomeFeature" is accessed.
+  require("@awesome-app/some-feature");
+  // "SomeFeature" is now overwritten and we can return the real component.
+  // Subsequent calls to "SomeFeature" will no longer go through this wrapper.
+  return AppRegistry.getRunnable("SomeFeature").componentProvider();
+});
+
+AppRegistry.registerComponent("AnotherFeature", () => {
+  // We'll import the module the first time "AnotherFeature" is accessed.
+  require("@awesome-app/another-feature");
+  // "AnotherFeature" is now overwritten and we can return the real component.
+  // Subsequent calls to "AnotherFeature" will no longer go through this
+  // wrapper.
+  return AppRegistry.getRunnable("AnotherFeature").componentProvider();
+});
+
+AppRegistry.registerComponent("YetAnotherFeature", () => {
+  // We'll import the module the first time "YetAnotherFeature" is accessed.
+  require("@awesome-app/yet-another-feature");
+  // "YetAnotherFeature" is now overwritten and we can return the real
+  // component. Subsequent calls to "YetAnotherFeature" will no longer go
+  // through this wrapper.
+  return AppRegistry.getRunnable("YetAnotherFeature").componentProvider();
+});
+
+AppRegistry.registerComponent("FinalFeature", () => {
+  // We'll import the module the first time "FinalFeature" is accessed.
+  require("@awesome-app/final-feature");
+  // "FinalFeature" is now overwritten and we can return the real component.
+  // Subsequent calls to "FinalFeature" will no longer go through this wrapper.
+  return AppRegistry.getRunnable("FinalFeature").componentProvider();
 });
 ```
+
+## Troubleshooting
+
+If you're having trouble with undetected components, there are a couple of
+things you should look out for.
+
+### First parameter must be a string literal
+
+`react-native-lazy-index` cannot evaluate the name passed to
+`AppRegistry.registerComponent()` or `BatchedBridge.registerCallableModule()`
+unless it is a string literal. For instance, if you have something like this in
+code:
+
+```js
+const appName = "MyApp";
+
+AppRegistry.registerComponent(appName, () => {
+  ...
+});
+```
+
+You'll need to inline the string:
+
+```js
+AppRegistry.registerComponent("MyApp", () => {
+  ...
+});
+```
+
+`react-native-lazy-index` outputs warnings when it detects these instances.
+
+### My components are still not found
+
+`react-native-lazy-index` avoids scanning dependencies too deeply to reduce its
+impact on the build time. If your registrations lie too deep within a
+dependency, it may have bailed out before reaching them. There are a couple of
+things you can do to help `react-native-lazy-index` find your components:
+
+1. If you have access to the source code, you can move your registrations
+   further up, closer to the entry point of your dependency.
+2. You can increase the max depth by setting the environment variable
+   `RN_LAZY_INDEX_MAX_DEPTH`. The default is currently set to 3. Note that
+   changing this setting may significantly impact your build time.
 
 ## Contributing
 

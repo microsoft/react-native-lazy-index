@@ -1,6 +1,6 @@
 {
   "name": "react-native-lazy-index",
-  "version": "1.0.0-dev",
+  "version": "2.0.0-dev",
   "description": "RAM bundle friendly index.js with on-demand loaded modules",
   "keywords": [
     "babel",
@@ -27,12 +27,15 @@
   },
   "scripts": {
     "ci": "yarn --frozen-lockfile --non-interactive",
-    "codegen": "babel --plugins codegen index.js > index.js.out",
     "format": "prettier --write $(git ls-files '*.js' '*.json')",
-    "test": "yarn format && yarn codegen && git diff && test $(git diff | grep -c '$') -eq 0"
+    "lint": "eslint --no-ignore $(git ls-files '*.js' ':!:test/__fixtures__/*/0.js')",
+    "test": "jest"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
+    "@babel/parser": "^7.0.0",
+    "@babel/traverse": "^7.0.0",
+    "@babel/types": "^7.0.0",
     "babel-plugin-codegen": "^4.0.0"
   },
   "peerDependencies": {
@@ -40,14 +43,51 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.0.0",
+    "eslint": "^7.0.0",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^26.0.0",
     "prettier": "^2.0.0",
-    "semantic-release": "^17.0.0"
+    "semantic-release": "^17.0.0",
+    "typescript": "^4.0.0"
   },
-  "experiences": {
-    "FeatureA": "@contoso/feature-a",
-    "FeatureB": "@contoso/feature-b",
-    "FeatureC": "@contoso/feature-c",
-    "FeatureD": "@contoso/feature-d"
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:jest/recommended",
+      "plugin:jest/style"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
+  },
+  "jest": {
+    "roots": [
+      "test"
+    ],
+    "testRegex": "/test/.*\\.test\\.js$"
   },
   "release": {
     "tagFormat": "${version}"
