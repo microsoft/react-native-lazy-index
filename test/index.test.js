@@ -68,10 +68,8 @@ describe("react-native-lazy-index", () => {
       )
     );
     expect(files.sort()).toEqual([
-      "CODE_OF_CONDUCT.md",
       "LICENSE",
       "README.md",
-      "SECURITY.md",
       "generateLazyIndex.js",
       "index.js",
       "package.json",

@@ -1,7 +1,0 @@
-*.out
-*.tgz
-.github/
-.vscode/
-coverage/
-test/
-tsconfig.json
