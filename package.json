@@ -20,6 +20,9 @@
   "homepage": "https://github.com/microsoft/react-native-lazy-index#readme",
   "bugs": "https://github.com/microsoft/react-native-lazy-index/issues",
   "license": "MIT",
+  "files": [
+    "*.js"
+  ],
   "main": "index.js",
   "repository": {
     "type": "git",
