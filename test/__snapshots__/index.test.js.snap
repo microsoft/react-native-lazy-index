@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`react-native-lazy-index wraps AppRegistry.registerComponent calls 1`] = `
-"const {
+"// @ts-nocheck
+const {
   AppRegistry
 } = require(\\"react-native\\");
 
@@ -20,7 +21,8 @@ AppRegistry.registerComponent(\\"Component-02\\", () => {
 `;
 
 exports[`react-native-lazy-index wraps BatchedBridge.registerCallableModule calls 1`] = `
-"const BatchedBridge = require(\\"react-native/Libraries/BatchedBridge/BatchedBridge\\");
+"// @ts-nocheck
+const BatchedBridge = require(\\"react-native/Libraries/BatchedBridge/BatchedBridge\\");
 
 BatchedBridge.registerLazyCallableModule(\\"Module-01\\", () => {
   // Source: module-01.js
@@ -37,7 +39,8 @@ BatchedBridge.registerLazyCallableModule(\\"Module-02\\", () => {
 `;
 
 exports[`react-native-lazy-index wraps registered components 1`] = `
-"const {
+"// @ts-nocheck
+const {
   AppRegistry
 } = require(\\"react-native\\");
 
@@ -69,6 +72,46 @@ AppRegistry.registerComponent(\\"SomeFeature\\", () => {
 });
 AppRegistry.registerComponent(\\"FinalFeature\\", () => {
   // Source: node_modules/@awesome-app/final-feature/index.js
+  require(\\"@awesome-app/final-feature\\");
+
+  return AppRegistry.getRunnable(\\"FinalFeature\\").componentProvider();
+});"
+`;
+
+exports[`react-native-lazy-index wraps registered components using declared entry points 1`] = `
+"// @ts-nocheck
+const {
+  AppRegistry
+} = require(\\"react-native\\");
+
+const BatchedBridge = require(\\"react-native/Libraries/BatchedBridge/BatchedBridge\\");
+
+BatchedBridge.registerLazyCallableModule(\\"YetAnotherFeature\\", () => {
+  // Source: package.json
+  require(\\"@awesome-app/yet-another-feature\\");
+
+  return BatchedBridge.getCallableModule(\\"YetAnotherFeature\\");
+});
+BatchedBridge.registerLazyCallableModule(\\"YetAnotherFeatureLazy\\", () => {
+  // Source: package.json
+  require(\\"@awesome-app/yet-another-feature\\");
+
+  return BatchedBridge.getCallableModule(\\"YetAnotherFeatureLazy\\");
+});
+BatchedBridge.registerLazyCallableModule(\\"AnotherFeature\\", () => {
+  // Source: package.json
+  require(\\"@awesome-app/another-feature\\");
+
+  return BatchedBridge.getCallableModule(\\"AnotherFeature\\");
+});
+AppRegistry.registerComponent(\\"SomeFeature\\", () => {
+  // Source: package.json
+  require(\\"@awesome-app/some-feature\\");
+
+  return AppRegistry.getRunnable(\\"SomeFeature\\").componentProvider();
+});
+AppRegistry.registerComponent(\\"FinalFeature\\", () => {
+  // Source: package.json
   require(\\"@awesome-app/final-feature\\");
 
   return AppRegistry.getRunnable(\\"FinalFeature\\").componentProvider();
