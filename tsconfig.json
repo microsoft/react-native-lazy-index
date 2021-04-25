@@ -11,5 +11,5 @@
     "noUnusedLocals": true,
     "resolveJsonModule": true
   },
-  "include": ["*.js", "test/index.test.js"]
+  "include": ["src/*.js", "test/index.test.js"]
 }

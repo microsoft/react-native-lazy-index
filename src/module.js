@@ -8,11 +8,7 @@ const fs = require("fs");
 const path = require("path");
 
 /**
- * @typedef {{
- *   type: "app" | "callable";
- *   moduleId: string;
- *   source: string;
- * }} Component;
+ * @typedef {import("./generateLazyIndex").Component} Component;
  *
  * @typedef {{
  *   module: string;
@@ -24,7 +20,6 @@ const path = require("path");
  * }} ScanState
  */
 
-const DEFAULT_MAX_DEPTH = 3;
 const TAG = "react-native-lazy-index";
 
 /**
@@ -46,77 +41,6 @@ function ensureStringLiteral(node, modulePath, calleeObject, calleeProperty) {
   }
 
   return true;
-}
-
-/**
- * Generates the index file.
- * @param {Record<string, Component>} components
- * @returns {string}
- */
-function generateIndex(components) {
-  let shouldImportAppRegistry = false;
-  let shouldImportBatchedBridge = false;
-
-  const lines = Object.keys(components).reduce((index, name) => {
-    const { type, moduleId, source } = components[name];
-    switch (type) {
-      case "app":
-        shouldImportAppRegistry = true;
-        index.push(
-          `AppRegistry.registerComponent("${name}", () => {`,
-          `  // Source: ${source}`,
-          `  require("${moduleId}");`,
-          `  return AppRegistry.getRunnable("${name}").componentProvider();`,
-          `});`
-        );
-        break;
-      case "callable":
-        shouldImportBatchedBridge = true;
-        index.push(
-          `BatchedBridge.registerLazyCallableModule("${name}", () => {`,
-          `  // Source: ${source}`,
-          `  require("${moduleId}");`,
-          `  return BatchedBridge.getCallableModule("${name}");`,
-          `});`
-        );
-        break;
-      default:
-        throw new Error(`Unknown component type: ${type}`);
-    }
-    return index;
-  }, /** @type {string[]} */ ([]));
-
-  if (shouldImportBatchedBridge) {
-    lines.unshift(
-      'const BatchedBridge = require("react-native/Libraries/BatchedBridge/BatchedBridge");'
-    );
-  }
-  if (shouldImportAppRegistry) {
-    lines.unshift('const { AppRegistry } = require("react-native");');
-  }
-
-  return lines.join("\n");
-}
-
-/**
- * Retrieves platform extensions from command line arguments.
- *
- * TODO: This method needs to be implemented.
- *
- * @returns {string[]}
- */
-function getPlatformExtensions() {
-  return [".ios", ".android", ".native"];
-}
-
-/**
- * Same as `parseInt()` but with a default value.
- * @param {string | undefined} s
- * @param {number} defaultValue
- */
-function parseIntDefault(s, defaultValue) {
-  const value = parseInt(s || "");
-  return isNaN(value) ? defaultValue : value;
 }
 
 /**
@@ -270,52 +194,5 @@ function scanModule(components, moduleId, state) {
   return components;
 }
 
-module.exports = () => {
-  /** @type {string[]} */
-  const experiences = (() => {
-    const { experiences } = JSON.parse(
-      fs.readFileSync(resolveModule("./package.json"), "utf-8")
-    );
-
-    if (Array.isArray(experiences)) {
-      return experiences;
-    } else if (typeof experiences === "object") {
-      const uniqueNames = Object.keys(experiences).reduce(
-        (uniqueNames, name) => {
-          uniqueNames.add(experiences[name]);
-          return uniqueNames;
-        },
-        /** @type {Set<string>} */ (new Set())
-      );
-      return [...uniqueNames];
-    } else {
-      throw new Error("Missing `experiences` section in `package.json`");
-    }
-  })();
-
-  const depth = parseIntDefault(
-    process.env["RN_LAZY_INDEX_MAX_DEPTH"],
-    DEFAULT_MAX_DEPTH
-  );
-
-  const platformExtensions = getPlatformExtensions();
-
-  /** @type {Set<string>} */
-  const visited = new Set();
-
-  const verbose = Boolean(process.env["RN_LAZY_INDEX_VERBOSE"]);
-
-  const components = experiences.reduce(
-    (components, module) =>
-      scanModule(components, module, {
-        module,
-        depth,
-        platformExtensions,
-        visited,
-        verbose,
-      }),
-    /** @type {Record<string, Component>} */ ({})
-  );
-
-  return generateIndex(components);
-};
+exports.resolveModule = resolveModule;
+exports.scanModule = scanModule;

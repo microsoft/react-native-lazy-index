@@ -83,6 +83,7 @@ generated:
 
 ```js
 const { AppRegistry } = require("react-native");
+const BatchedBridge = require("react-native/Libraries/BatchedBridge/BatchedBridge");
 
 AppRegistry.registerComponent("SomeFeature", () => {
   // We'll import the module the first time "SomeFeature" is accessed.
@@ -92,13 +93,13 @@ AppRegistry.registerComponent("SomeFeature", () => {
   return AppRegistry.getRunnable("SomeFeature").componentProvider();
 });
 
-AppRegistry.registerComponent("AnotherFeature", () => {
+BatchedBridge.registerLazyCallableModule("AnotherFeature", () => {
   // We'll import the module the first time "AnotherFeature" is accessed.
   require("@awesome-app/another-feature");
   // "AnotherFeature" is now overwritten and we can return the real component.
   // Subsequent calls to "AnotherFeature" will no longer go through this
   // wrapper.
-  return AppRegistry.getRunnable("AnotherFeature").componentProvider();
+  return BatchedBridge.getCallableModule("AnotherFeature");
 });
 
 AppRegistry.registerComponent("YetAnotherFeature", () => {
@@ -147,7 +148,9 @@ AppRegistry.registerComponent("MyApp", () => {
 });
 ```
 
-`react-native-lazy-index` outputs warnings when it detects these instances.
+`react-native-lazy-index` outputs warnings when it detects these instances. If
+changing the code is not feasible, you can also
+[manually declare all entry points](#i-want-to-manually-declare-all-entry-points-myself).
 
 ### My components are still not found
 
@@ -161,6 +164,26 @@ things you can do to help `react-native-lazy-index` find your components:
 2. You can increase the max depth by setting the environment variable
    `RN_LAZY_INDEX_MAX_DEPTH`. The default is currently set to 3. Note that
    changing this setting may significantly impact your build time.
+3. If neither is feasible, you can also
+   [manually declare all entry points](#i-want-to-manually-declare-all-entry-points-myself).
+
+### I want to manually declare all entry points myself
+
+You can skip scanning by manually declaring entry points. The below
+configuration will generate the same code as the earlier example output:
+
+```json
+  "experiences": {
+    "SomeFeature": "@awesome-app/some-feature",
+    "callable:AnotherFeature": "@awesome-app/another-feature",
+    "YetAnotherFeature": "@awesome-app/yet-another-feature",
+    "FinalFeature": "@awesome-app/final-feature"
+  }
+```
+
+By default, a call to `AppRegistry` is generated using the key as the app key,
+and the value is the name of the module containing the app. If the key is
+prefixed with `callable:`, a call to `BatchedBridge` will be generated.
 
 ## Contributing
 

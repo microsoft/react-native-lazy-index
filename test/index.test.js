@@ -27,14 +27,11 @@ describe("react-native-lazy-index", () => {
   function transformFixture(fixture) {
     const workingDir = path.join(__dirname, "__fixtures__", fixture);
     process.chdir(workingDir);
-    return babel.transformSync(
-      `codegen.require("../../../generateLazyIndex");`,
-      {
-        cwd: workingDir,
-        filename: `${fixture}.js`,
-        plugins: ["codegen"],
-      }
-    );
+    return babel.transformFileSync("../../../src/index.js", {
+      cwd: workingDir,
+      filename: `${fixture}.js`,
+      plugins: ["codegen"],
+    });
   }
 
   afterEach(() => process.chdir(currentWorkingDir));
@@ -60,6 +57,13 @@ describe("react-native-lazy-index", () => {
     expect(result.code).toMatchSnapshot();
   });
 
+  test("wraps registered components using declared entry points", () => {
+    const result = transformFixture("MyOtherAwesomeApp");
+    expect(result).toBeTruthy();
+    // @ts-ignore object is possibly 'null'
+    expect(result.code).toMatchSnapshot();
+  });
+
   test("packs only necessary files", () => {
     const files = Array.from(
       generateSequence(
@@ -70,9 +74,11 @@ describe("react-native-lazy-index", () => {
     expect(files.sort()).toEqual([
       "LICENSE",
       "README.md",
-      "generateLazyIndex.js",
-      "index.js",
       "package.json",
+      "src/experiences.js",
+      "src/generateLazyIndex.js",
+      "src/index.js",
+      "src/module.js",
     ]);
   });
 });
