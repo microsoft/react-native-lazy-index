@@ -111,6 +111,10 @@ function scanModule(components, moduleId, state) {
   }
 
   state.visited.add(modulePath);
+  if (!/\.m?[jt]sx?$/.test(modulePath)) {
+    return components;
+  }
+
   if (state.verbose) {
     console.log(`[${TAG}] Reading ${modulePath}`);
   }
