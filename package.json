@@ -30,8 +30,8 @@
   },
   "scripts": {
     "ci": "yarn --frozen-lockfile --non-interactive",
-    "format": "prettier --write $(git ls-files '*.js' '*.json')",
-    "lint": "eslint --no-ignore $(git ls-files '*.js' ':!:test/__fixtures__/*/0.js')",
+    "format": "prettier --write $(git ls-files '*.js' '*.json' '*.ts')",
+    "lint": "eslint --no-ignore $(git ls-files '*.js' '*.ts' ':!:test/__fixtures__/*/0.js')",
     "test": "jest"
   },
   "dependencies": {
@@ -46,8 +46,11 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.0",
+    "@typescript-eslint/parser": "^4.0.0",
     "eslint": "^7.0.0",
     "eslint-plugin-jest": "^24.0.0",
     "eslint-plugin-prettier": "^3.0.0",
@@ -70,6 +73,7 @@
       "Atomics": "readonly",
       "SharedArrayBuffer": "readonly"
     },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "ecmaVersion": 2018,
       "sourceType": "module"
@@ -90,7 +94,7 @@
     "roots": [
       "test"
     ],
-    "testRegex": "/test/.*\\.test\\.js$"
+    "testRegex": "/test/.*\\.test\\.ts$"
   },
   "release": {
     "tagFormat": "${version}"
