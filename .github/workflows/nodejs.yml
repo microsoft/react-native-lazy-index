@@ -13,7 +13,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2.3.4
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2.1.5
         with:
@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 14
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
       - name: Install
         run: yarn ci
       - name: Release
