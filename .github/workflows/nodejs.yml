@@ -2,7 +2,7 @@ name: Node CI
 on:
   push:
     branches:
-      - master
+      - trunk
   pull_request:
 jobs:
   test:
