@@ -97,6 +97,7 @@
     "testRegex": "/test/.*\\.test\\.ts$"
   },
   "release": {
+    "branches": ["trunk"],
     "tagFormat": "${version}"
   }
 }
