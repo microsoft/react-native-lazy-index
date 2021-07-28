@@ -1,6 +1,7 @@
 # react-native-lazy-index
 
-[![npm version](https://badge.fury.io/js/react-native-lazy-index.svg)](https://badge.fury.io/js/react-native-lazy-index)
+[![Node CI](https://github.com/microsoft/react-native-lazy-index/actions/workflows/nodejs.yml/badge.svg)](https://github.com/microsoft/react-native-lazy-index/actions/workflows/nodejs.yml)
+[![npm version](https://img.shields.io/npm/v/react-native-lazy-index)](https://www.npmjs.com/package/react-native-lazy-index)
 
 `react-native-lazy-index` is a RAM bundle friendly, bundle-time generated
 `index.js`. Improve your app startup time by only loading features you'll use on

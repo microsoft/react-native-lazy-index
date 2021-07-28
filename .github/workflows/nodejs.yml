@@ -8,21 +8,28 @@ jobs:
   test:
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12, 14, 16]
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.4
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2.3.0
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
       - name: Deduplicate packages
-        if: ${{ matrix.node-version == '14.x' }}
-        run: npx yarn-deduplicate --list --fail
+        if: ${{ matrix.node-version == '14' }}
+        run: yarn dedupe --check
+      - name: Cache /.yarn/cache
+        uses: actions/cache@v2
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install
-        run: yarn ci
+        run: yarn
       - name: Check
         run: yarn tsc
       - name: Lint
@@ -40,8 +47,15 @@ jobs:
           node-version: 14
       - name: Checkout
         uses: actions/checkout@v2.3.4
+      - name: Cache /.yarn/cache
+        uses: actions/cache@v2
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install
-        run: yarn ci
+        run: yarn
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
