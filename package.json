@@ -29,6 +29,7 @@
     "url": "git+https://github.com/microsoft/react-native-lazy-index.git"
   },
   "scripts": {
+    "clean": "git clean -dfqx --exclude=.yarn/cache",
     "format": "prettier --write $(git ls-files '*.js' '*.json' '*.ts')",
     "lint": "eslint --no-ignore $(git ls-files '*.js' '*.ts' ':!:test/__fixtures__/*/0.js')",
     "test": "jest"
