@@ -3844,18 +3844,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.0.0":
-  version: 24.5.0
-  resolution: "eslint-plugin-jest@npm:24.5.0"
+"eslint-plugin-jest@npm:^25.0.0":
+  version: 25.0.1
+  resolution: "eslint-plugin-jest@npm:25.0.1"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ">= 4"
-    eslint: ">=5"
+    "@typescript-eslint/eslint-plugin": ^4.0.0
+    eslint: ^6.0.0 || ^7.0.0
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: 6f7eacb7e3ba60a90d23d998c97dfa2eec46694b1c2102bf585bf0e60a5bb6b31f880d49a569813b70da45e6449b1db0dfad646c1204e2d27be8eca039bcbc63
+  checksum: b32fe8c5aa5fe3c6e22fa6a6d7dba9cab366c8cf973b288e9e5e75c35ffa08638dee49e20271bb61e8e70e2323fed2feeade085fd572ded4703f6defde415a95
   languageName: node
   linkType: hard
 
@@ -7464,7 +7464,7 @@ __metadata:
     "@typescript-eslint/parser": ^4.0.0
     babel-plugin-codegen: ^4.0.0
     eslint: ^7.0.0
-    eslint-plugin-jest: ^24.0.0
+    eslint-plugin-jest: ^25.0.0
     eslint-plugin-prettier: ^4.0.0
     jest: ^27.0.0
     prettier: ^2.0.0
