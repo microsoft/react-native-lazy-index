@@ -46,13 +46,11 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
+    "@rnx-kit/eslint-plugin": "^0.1.2",
     "@rnx-kit/jest-preset": "^0.1.0",
     "@types/jest": "^27.0.0",
     "@types/node": "^14.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
-    "eslint-plugin-jest": "^25.0.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.0.0",
     "prettier": "^2.0.0",
     "semantic-release": "^18.0.0",
@@ -60,34 +58,18 @@
   },
   "packageManager": "yarn@3.0.2",
   "eslintConfig": {
-    "env": {
-      "es6": true,
-      "node": true
-    },
     "extends": [
-      "eslint:recommended",
+      "plugin:@rnx-kit/recommended",
       "plugin:jest/recommended",
       "plugin:jest/style"
     ],
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "prettier"
-    ],
     "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "endOfLine": "auto"
-        }
-      ]
+      "@typescript-eslint/ban-ts-comment": "off"
+    },
+    "settings": {
+      "react": {
+        "version": "17.0.2"
+      }
     }
   },
   "jest": {
