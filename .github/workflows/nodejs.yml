@@ -31,8 +31,10 @@ jobs:
       - name: Install
         run: yarn
       - name: Check
+        if: ${{ matrix.node-version == '14' }}
         run: yarn tsc
       - name: Lint
+        if: ${{ matrix.node-version == '14' }}
         run: yarn lint
       - name: Test
         run: yarn test
