@@ -347,12 +347,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.0.0, @babel/parser@npm:^7.1.0, @babel/parser@npm:^7.16.0, @babel/parser@npm:^7.7.2":
-  version: 7.16.2
-  resolution: "@babel/parser@npm:7.16.2"
+"@babel/parser@npm:^7.0.0, @babel/parser@npm:^7.1.0, @babel/parser@npm:^7.16.0, @babel/parser@npm:^7.16.3, @babel/parser@npm:^7.7.2":
+  version: 7.16.3
+  resolution: "@babel/parser@npm:7.16.3"
   bin:
     parser: ./bin/babel-parser.js
-  checksum: e8ceef8214adf55beaae80fff1647ae6535e17af592749a6f3fd3ed1081bbb1474fd88bf4d3470ec8bc0082843a6d23445e9e08b03e91831458acc6fd37d7bc9
+  checksum: 486b676b9d47d10de72598f9453eb4591535c5639b5e153d46442fb0d8523d775abf6e5f457193730b609d55ad0fd171f28a075c1fa5679f5049279e77cd63b2
   languageName: node
   linkType: hard
 
@@ -1277,19 +1277,19 @@ __metadata:
   linkType: hard
 
 "@babel/traverse@npm:^7.0.0, @babel/traverse@npm:^7.1.0, @babel/traverse@npm:^7.13.0, @babel/traverse@npm:^7.16.0, @babel/traverse@npm:^7.7.2":
-  version: 7.16.0
-  resolution: "@babel/traverse@npm:7.16.0"
+  version: 7.16.3
+  resolution: "@babel/traverse@npm:7.16.3"
   dependencies:
     "@babel/code-frame": ^7.16.0
     "@babel/generator": ^7.16.0
     "@babel/helper-function-name": ^7.16.0
     "@babel/helper-hoist-variables": ^7.16.0
     "@babel/helper-split-export-declaration": ^7.16.0
-    "@babel/parser": ^7.16.0
+    "@babel/parser": ^7.16.3
     "@babel/types": ^7.16.0
     debug: ^4.1.0
     globals: ^11.1.0
-  checksum: 83f634019a705d7ecd5c0f89a7c2cbd292c98a2ecc8a61faeeb48507bf23d81a79c808eb9d50337b48ed51a26929a75601d006cd4e537b1ec090d0ea2502b317
+  checksum: abb14857b1104c73124612954865e28f95a86eb6741f35851369b4f9eabc17e394c9aa6f21fba6ce23813592353090d409772be828717cbe5154a5e981a753c1
   languageName: node
   linkType: hard
 
