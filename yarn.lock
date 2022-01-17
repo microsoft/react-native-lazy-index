@@ -6,8 +6,8 @@ __metadata:
   cacheKey: 8
 
 "@babel/cli@npm:^7.0.0":
-  version: 7.16.7
-  resolution: "@babel/cli@npm:7.16.7"
+  version: 7.16.8
+  resolution: "@babel/cli@npm:7.16.8"
   dependencies:
     "@nicolo-ribaudo/chokidar-2": 2.1.8-no-fsevents.3
     chokidar: ^3.4.0
@@ -28,7 +28,7 @@ __metadata:
   bin:
     babel: ./bin/babel.js
     babel-external-helpers: ./bin/babel-external-helpers.js
-  checksum: dc931ede61bd9f4af8a8dbe8dd2cb81e1aaf79a7655cf1cef60662a2895977ca91f3c2b47f693c038fa0625ace54c07dbf183e5cbd678cebd5313677ad650847
+  checksum: bb0cf50ff502a30e92918cf644192351023a9ef615acc3e7774abbd0327948d93e58ab3a8d31f52c18e2f04df8af10186b89421c28f4f0a2eee6b1ddce17a8ef
   languageName: node
   linkType: hard
 
@@ -71,14 +71,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.16.7, @babel/generator@npm:^7.7.2":
-  version: 7.16.7
-  resolution: "@babel/generator@npm:7.16.7"
+"@babel/generator@npm:^7.16.7, @babel/generator@npm:^7.16.8, @babel/generator@npm:^7.7.2":
+  version: 7.16.8
+  resolution: "@babel/generator@npm:7.16.8"
   dependencies:
-    "@babel/types": ^7.16.7
+    "@babel/types": ^7.16.8
     jsesc: ^2.5.1
     source-map: ^0.5.0
-  checksum: 20c6a7c5e372a66ec2900c074b2ec3634d3f615cafccbb416770f4b419251c6dc27a0a137b71407e218463fe059a3a6a5afb734f35089d94bdb66e01fe8a9e6f
+  checksum: 83af38b34735605c9d5f774c87a46c2cffaf666b28e9eeba883b2d7076412257e5c2264c26d9740ce44da6955fdaf857659391db02c012714a2a6dc19e403105
   languageName: node
   linkType: hard
 
@@ -356,12 +356,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.0.0, @babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.16.7":
-  version: 7.16.7
-  resolution: "@babel/parser@npm:7.16.7"
+"@babel/parser@npm:^7.0.0, @babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.16.7, @babel/parser@npm:^7.16.8":
+  version: 7.16.8
+  resolution: "@babel/parser@npm:7.16.8"
   bin:
     parser: ./bin/babel-parser.js
-  checksum: e664ff1edda164ab3f3c97fc1dd1a8930b0fba9981cbf873d3f25a22d16d50e2efcfaf81daeefa978bff2c4f268d34832f6817c8bc4e03594c3f43beba92fb68
+  checksum: f6bc2eb1f298fcb81db34c2d343fd05d8c59dbc5419a88c1cb4d298c7a3863e4d54f5a4f38a40e1aa979e4ce355816348730b471c1d787d424ed52b270fc7be0
   languageName: node
   linkType: hard
 
@@ -1286,30 +1286,30 @@ __metadata:
   linkType: hard
 
 "@babel/traverse@npm:^7.0.0, @babel/traverse@npm:^7.13.0, @babel/traverse@npm:^7.16.0, @babel/traverse@npm:^7.16.7, @babel/traverse@npm:^7.7.2":
-  version: 7.16.7
-  resolution: "@babel/traverse@npm:7.16.7"
+  version: 7.16.8
+  resolution: "@babel/traverse@npm:7.16.8"
   dependencies:
     "@babel/code-frame": ^7.16.7
-    "@babel/generator": ^7.16.7
+    "@babel/generator": ^7.16.8
     "@babel/helper-environment-visitor": ^7.16.7
     "@babel/helper-function-name": ^7.16.7
     "@babel/helper-hoist-variables": ^7.16.7
     "@babel/helper-split-export-declaration": ^7.16.7
-    "@babel/parser": ^7.16.7
-    "@babel/types": ^7.16.7
+    "@babel/parser": ^7.16.8
+    "@babel/types": ^7.16.8
     debug: ^4.1.0
     globals: ^11.1.0
-  checksum: 65261f7a5bf257c10a9415b6c227fb555ace359ad786645d9cf22f0e3fc8dc8e38895269f3b93cc39eccd8ed992e7bacc358b4cb7d3496fe54f91cda49220834
+  checksum: 303bc328289c73bd57dc8b90e83dfa9f4dae8e7039c95350994db67b2850a7966645c2c9f3292d0621f2051bb3d34439dc294b258dc1ad0e9d7eab04ac6bcb44
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.16.0, @babel/types@npm:^7.16.7, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
-  version: 7.16.7
-  resolution: "@babel/types@npm:7.16.7"
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.16.0, @babel/types@npm:^7.16.7, @babel/types@npm:^7.16.8, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
+  version: 7.16.8
+  resolution: "@babel/types@npm:7.16.8"
   dependencies:
     "@babel/helper-validator-identifier": ^7.16.7
     to-fast-properties: ^2.0.0
-  checksum: df9210723259df9faea8c7e5674a59e57ead82664aab9f54daae887db5a50a956f30f57ed77a2d6cbb89b908d520cf8d883267c4e9098e31bc74649f2f714654
+  checksum: 4f6a187b2924df70e21d6e6c0822f91b1b936fe060bc92bb477b93bd8a712c88fe41a73f85c0ec53b033353374fe33e773b04ffc340ad36afd8f647dd05c4ee1
   languageName: node
   linkType: hard
 
