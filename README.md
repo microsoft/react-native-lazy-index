@@ -26,36 +26,39 @@ npm install --save react-native-lazy-index
 so you'll need to configure Babel to include it. The recommended way is to add
 it to your `.babelrc`:
 
-```json
-{
-  "plugins": ["codegen"]
-}
+```diff
+ {
+   "presets": ["module:metro-react-native-babel-preset"],
+   "plugins": [
++    "codegen"
+   ]
+ }
 ```
 
 In your `package.json`, add a section called `"experiences"` with the features
 that should be lazy loaded. In the example below, we've listed four packages:
 
-```json
-{
-  "name": "my-awesome-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "@awesome-app/some-feature": "*",
-    "@awesome-app/another-feature": "*",
-    "@awesome-app/yet-another-feature": "*",
-    "@awesome-app/final-feature": "*",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
-    "react-native-lazy-index": "^2.0.0"
-  },
-  "experiences": [
-    "@awesome-app/some-feature",
-    "@awesome-app/another-feature",
-    "@awesome-app/yet-another-feature",
-    "@awesome-app/final-feature"
-  ]
-}
+```diff
+ {
+   "name": "my-awesome-app",
+   "version": "1.0.0",
+   "main": "index.js",
+   "dependencies": {
+     "@awesome-app/some-feature": "*",
+     "@awesome-app/another-feature": "*",
+     "@awesome-app/yet-another-feature": "*",
+     "@awesome-app/final-feature": "*",
+     "react": "16.13.1",
+     "react-native": "0.63.4",
+     "react-native-lazy-index": "^2.0.0"
+   },
++  "experiences": [
++    "@awesome-app/some-feature",
++    "@awesome-app/another-feature",
++    "@awesome-app/yet-another-feature",
++    "@awesome-app/final-feature"
++  ]
+ }
 ```
 
 That's it!
