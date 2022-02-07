@@ -1941,17 +1941,16 @@ __metadata:
   linkType: hard
 
 "@rnx-kit/eslint-plugin@npm:^0.2.0":
-  version: 0.2.9
-  resolution: "@rnx-kit/eslint-plugin@npm:0.2.9"
+  version: 0.2.10
+  resolution: "@rnx-kit/eslint-plugin@npm:0.2.10"
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
     enhanced-resolve: ^5.8.3
-    eslint-plugin-jest: ^25.0.0
     eslint-plugin-react: ^7.26.0
   peerDependencies:
     eslint: ">=6.0.0"
-  checksum: 70c3d363c953c7af400abdb0b52e2ec9e8c2c19745e6e5b56c91c623f4d4645f396d86168d023d1cd8fbcfa8cc5ad4a6b5cfd8d11f3f44b1aa4694e153ed5d2b
+  checksum: 985bb70be1cdcc8d6a6347a299e118601cb6a4c69ec305dae196e5ccc85cbd72f34f38619162a0d065f9e910ee2eef43932c4b194c00efb6bf9ceffb02b7fceb
   languageName: node
   linkType: hard
 
@@ -2286,7 +2285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/experimental-utils@npm:5.2.0, @typescript-eslint/experimental-utils@npm:^5.0.0":
+"@typescript-eslint/experimental-utils@npm:5.2.0":
   version: 5.2.0
   resolution: "@typescript-eslint/experimental-utils@npm:5.2.0"
   dependencies:
@@ -3944,21 +3943,6 @@ __metadata:
     escodegen: bin/escodegen.js
     esgenerate: bin/esgenerate.js
   checksum: 5aa6b2966fafe0545e4e77936300cc94ad57cfe4dc4ebff9950492eaba83eef634503f12d7e3cbd644ecc1bab388ad0e92b06fd32222c9281a75d1cf02ec6cef
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-jest@npm:^25.0.0":
-  version: 25.2.2
-  resolution: "eslint-plugin-jest@npm:25.2.2"
-  dependencies:
-    "@typescript-eslint/experimental-utils": ^5.0.0
-  peerDependencies:
-    "@typescript-eslint/eslint-plugin": ^4.0.0 || ^5.0.0
-    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-  peerDependenciesMeta:
-    "@typescript-eslint/eslint-plugin":
-      optional: true
-  checksum: ba78bf20625f017b47f2dc0fe12226f461e7b289fd7e3314421f51a993b142dd51017404524950a95978b3b86850a64931f0615f274cdfeeafea078abf594d73
   languageName: node
   linkType: hard
 
